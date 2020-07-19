@@ -1,0 +1,6 @@
+/* pages/regist/regist.wxss */
+.view_line{
+  border-bottom: 1px #000000 solid;
+  height: 8px;
+  width: 100%;
+}

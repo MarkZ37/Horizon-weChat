@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/main/main",
+    "pages/about_my/index",
+    "pages/enter/index",
+    "pages/about_my/setup/setup",
+    "pages/about_my/more/more",
+    "pages/login/login",
+    "pages/regist/regist"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00A8C4",
+    "navigationBarTitleText": "Horizon",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "home",
+        "iconPath": "pages/main/img/home.png",
+        "selectedIconPath": "pages/main/img/_home.png"
+      },
+      {
+        "pagePath": "pages/about_my/index",
+        "text": "me",
+        "iconPath": "pages/about_my/img/my.png",
+        "selectedIconPath": "pages/about_my/img/_my.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,58 @@
+/* pages/about_my/index.wxss */
+.head_bar{
+  width: 100%;
+  height: 40px;
+  background-color: #00A8C4;
+}
+.head_bar .setup{
+  float: left;
+  width: 23.33%;
+  height: 100%;
+  
+}
+.head_bar .setup button{
+  height: 100%;
+  width: 100%;
+  color: #FFFFFF;
+  border-radius: 0px;
+  background-color: #00A8C4;
+  font-size: 15px;
+  padding-left: 0px;
+}
+.head_bar .me{
+  float: left;
+  width: 53.33%;
+  height: 100%;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 25px;
+}
+.head_bar .more{
+  float: left;
+  width: 23.33%;
+  height: 100%;
+  color: #FFFFFF;
+}
+.head_bar .more button{
+  height: 100%;
+  width: 100%;
+  color: #FFFFFF;
+  border-radius: 0px;
+  background-color: #00A8C4;
+  font-size: 15px;
+  padding-left: 0px;
+  border: 0px;
+}
+
+/* 未登录页面 */
+.no_login{
+  width: 100%;
+}
+.no_login .logo_img{
+  width: 100%;
+}
+.view_line{
+  border-bottom: 1px #000000 solid;
+  height: 8px;
+  width: 100%;
+}
