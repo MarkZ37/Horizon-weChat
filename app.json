@@ -8,7 +8,7 @@
     "pages/about_my/setup/setup",
     "pages/about_my/more/more",
     "pages/login/login",
-    "pages/regist/regist"
+    "pages/deploy/deploy"
   ],
   "window": {
     "backgroundTextStyle": "light",

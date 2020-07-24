@@ -12,31 +12,21 @@
       </view>
     </view>
   </view>
+
+  <view class="deploy" bindtap="goToDeploy">
+    <image src="./img/deploy.png" mode="widthFix" class="deploy-img"></image>
+  </view>
 </view>
 <view wx:else>
   <view class="no_login">
     <!-- 未登录提示 -->
     <image src="https://markhorizon.oss-cn-beijing.aliyuncs.com/logo/logo.png" mode="widthFix" class="logo_img"></image>
-    <view style="font-size: 20px; text-align: center; height:100px">需要注册或者登陆</view>
+    <view style="font-size: 20px; text-align: center; height:100px">需要登陆</view>
     
   </view>
-  <view class="login_regist">
-    <form catchsubmit="formSubmit" catchreset="formReset">
-      <view class="page-section-title">Horizon账号</view>
-      <view class="weui-cell__bd" style="margin: 30rpx 20rpx;">
-        <input class="account-input" name="account" placeholder="账号" />
-        <view class="view_line"></view>
+  <view class="login">
+    <view>
+        <button style="margin: 30rpx 100rpx;background-color: #00A8C4;color: #FFFFFF;" bindtap="dealLogin" class="login_btn">授权登陆</button>
       </view>
-      <view class="page-section-title">密码</view>
-      <view class="weui-cell__bd" style="margin: 30rpx 20rpx;">
-        <input class="password-input" name="password" placeholder="密码" type="password"/>
-        <view class="view_line"></view>
-      </view>
-      <view>
-        <button style="margin: 30rpx 100rpx;background-color: #00A8C4;color: #FFFFFF;" formType="submit" class="login_btn">登陆</button>
-      </view>
-    </form>
-    <text>需要注册？</text>
-    <button style="margin: 30rpx 100rpx;background-color: #00A8C4;color: #FFFFFF" class="regist_btn" bindtap="goToRegist">注册</button>
   </view>
 </view>

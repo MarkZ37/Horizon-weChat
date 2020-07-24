@@ -22,43 +22,82 @@ Page({
       url: 'more/more',
     })
   },
-  goToRegist: function(){
-    // 跳转到regist
+  goToDeploy: function(){
+    //跳转deploy
     wx.navigateTo({
-      url: '../regist/regist',
+      url: '../deploy/deploy',
     })
   },
-  formSubmit: function(e){
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    // 信息错误判定
-    if(e.detail.value.account == "" || e.detail.value.password == ""){
-      wx.showModal({
-        title: '提示',
-        content: '请填写所有信息',
-        success(res) {
-          if (res.confirm) {
-           console.log('用户点击确定')
-          } else if (res.cancel) {
-           console.log('用户点击取消')
+  dealLogin: function(){
+    //授权登录
+    wx.login({
+      success: function (res) {
+        console.log(res);
+        wx.getSetting({
+          success(setRes) {
+            //判断是否已授权
+            if (!setRes.authSetting['scope.userInfo']) {
+              //授权访问
+              wx.authorize({
+                scope: 'scope.userInfo',
+                success() {
+                  wx.getUserInfo({
+                    lang: zh_CN,
+                    success: function (userRes) {
+                      //发起网络请求
+                      wx.request({
+                        url: 'url',
+                        data: {
+                          code: res.code,
+                          encryptedData: userRes.encryptedData,
+                          iv: userRes.iv
+                        },
+                        header: {
+                          "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        method: 'POST',
+                        //服务器的回调
+                        success: function (result) {
+                          var data = result.data.result;
+                          data.expireTime = nowDate + EXPIRETIME;
+                          wx.setStorageSync('userInfo', data);
+                          userInfo = data;
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            } else {
+              //获取用户信息
+              wx.getUserInfo({
+                lang: zh_CN,
+                success: function (userRes) {
+                  //网络请求
+                  wx.request({
+                    url: 'url',
+                    data: {
+                      code: res.code,
+                      encryptedData: userRes.encryptedData,
+                      iv: userRes.iv
+                    },
+                    header: {
+                      "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    method: 'POST',
+                    success: function (result) {
+                      var data = result.data.result;
+                      data.expireTime = nowDate + EXPIRETIME;
+                      wx.setStorageSync('userInfo', data);
+                      userInfo = data;
+                    }
+                  })
+                }
+              })
+            }
           }
-         }
-      })
-    }else{
-      wx.request({
-        url: 'http://localhost:8080/login',
-        data: e.detail.value,
-        method:'GET',
-        header:{
-          'content-type':'application/json'
-        },
-        success:function(res){
-          console.log(res.data);
-        },
-        fail:function(res){
-          console.log("--------fail--------");
-        }
-      })
-    }
-  },
-  
+        })
+      }
+    })
+  }
 })
