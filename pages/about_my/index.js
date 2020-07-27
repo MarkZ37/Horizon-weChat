@@ -31,70 +31,46 @@ Page({
   dealLogin: function(){
     //授权登录
     wx.login({
-      success: function (res) {
-        console.log(res);
-        wx.getSetting({
-          success(setRes) {
-            //判断是否已授权
-            if (!setRes.authSetting['scope.userInfo']) {
-              //授权访问
-              wx.authorize({
-                scope: 'scope.userInfo',
-                success() {
-                  wx.getUserInfo({
-                    lang: zh_CN,
-                    success: function (userRes) {
-                      //发起网络请求
-                      wx.request({
-                        url: 'url',
-                        data: {
-                          code: res.code,
-                          encryptedData: userRes.encryptedData,
-                          iv: userRes.iv
-                        },
-                        header: {
-                          "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        method: 'POST',
-                        //服务器的回调
-                        success: function (result) {
-                          var data = result.data.result;
-                          data.expireTime = nowDate + EXPIRETIME;
-                          wx.setStorageSync('userInfo', data);
-                          userInfo = data;
-                        }
-                      })
-                    }
-                  })
-                }
-              })
-            } else {
-              //获取用户信息
-              wx.getUserInfo({
-                lang: zh_CN,
-                success: function (userRes) {
-                  //网络请求
-                  wx.request({
-                    url: 'url',
-                    data: {
-                      code: res.code,
-                      encryptedData: userRes.encryptedData,
-                      iv: userRes.iv
-                    },
-                    header: {
-                      "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    method: 'POST',
-                    success: function (result) {
-                      var data = result.data.result;
-                      data.expireTime = nowDate + EXPIRETIME;
-                      wx.setStorageSync('userInfo', data);
-                      userInfo = data;
-                    }
-                  })
-                }
-              })
-            }
+      success: res => {
+        console.log(res)
+		//请求后端换取openid的接口
+        wx.request({
+          url: 'http://localhost:8080/api/user/login',
+          method: 'POST',
+          data: {
+          //将code传到后端
+            code: res.code
+          },
+          success: res => {
+            //获取到openid作为账号密码
+            console.log(res)
+            // console.log(app.globalData.userInfo)
+            wx.request({
+              url: '/wx-login/',
+              method: 'POST',
+              data: {
+                openid: res.openid,
+                session_key: res.session_key,
+                // nickname: app.globalData.userInfo.nickName,
+                // avatar_url: app.globalData.userInfo.avatarUrl,
+                // gender: app.globalData.userInfo.gender
+              },
+              //登录成功后返回token保存在storage中
+              success: res => {
+                console.log(res)
+                //token存入storage
+                wx.setStorageSync('jwt_token', res.token)
+                wx.setStorageSync('user_id', res.user_id)
+                this.reFreshUserProfile()
+                //登录状态置为true
+                this.setData({
+                  isLogin: true,
+                  hasUserInfo: true
+                })
+                // app.globalData.isLogin = true
+              }
+            })
+
           }
         })
       }
