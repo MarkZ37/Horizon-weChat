@@ -8,7 +8,6 @@
   float: left;
   width: 23.33%;
   height: 100%;
-  
 }
 .head_bar .setup button{
   height: 100%;
@@ -25,7 +24,7 @@
   height: 100%;
   color: #FFFFFF;
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
 }
 .head_bar .more{
   float: left;
@@ -56,7 +55,17 @@
   height: 8px;
   width: 100%;
 }
-
+/* 头像 */
+.avatar{
+  width: 80px;
+  height: 80px;
+  margin: 0px auto;
+  margin-top: 10px;
+}
+.avatar .avatar-img{
+  width: 100%;
+  border-radius: 100px;
+}
 /* 发布文章 */
 .deploy{
   width: 50px;
@@ -67,4 +76,10 @@
 }
 .deploy-img{
   width: 50px;
+}
+
+/* 用户信息 */
+.position{
+  margin: 0px auto;
+  text-align: center;
 }

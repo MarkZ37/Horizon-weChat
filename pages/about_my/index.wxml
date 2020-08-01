@@ -1,18 +1,29 @@
 <!--pages/about_my/index.wxml-->
-<view wx:if="{{false}}">
+<view wx:if="{{isLogin}}">
 <!-- 已经登陆界面 -->
   <view class='head'>
     <view class='head_bar'>
       <view class='setup'>
+        <!-- 设置 -->
         <button bindtap="goToSetup">Setup</button>
       </view>
       <view class='me'>{{nickName}}</view>
       <view class='more'>
+        <!-- 更多 -->
         <button bindtap="goToMore">More</button>
       </view>
     </view>
   </view>
-
+  <view class="avatar">
+    <image src="{{avatarUrl}}" class="avatar-img" mode="widthFix"></image>
+  </view>
+  <view class="text-info">
+    <view class="position">
+      <view>{{gender}}</view>
+      <view>{{country}}|{{province}}|{{city}}</view>
+    </view>
+  </view>
+  <!-- 发布文章 -->
   <view class="deploy" bindtap="goToDeploy">
     <image src="./img/deploy.png" mode="widthFix" class="deploy-img"></image>
   </view>

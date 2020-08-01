@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    isLogin: false
   },
 
   // 事件函数
@@ -29,6 +29,7 @@ Page({
     })
   },
   dealLogin: function(){
+    var this_ = this;
     //授权登录
     wx.login({
       success: function(res) {
@@ -47,7 +48,15 @@ Page({
                 code: res.code
               },
               success: function(userInfo) {
-                console.log(userInfo);
+                console.log(userInfo.data);
+                //登录成功
+                if(userInfo.data.status == 777) {
+                  wx.setStorageSync('userInfo', userInfo.data.data);
+                  this_.setUserInfo();
+                  this_.setData({
+                    isLogin: true
+                  })
+                }
               }
             })
           }
@@ -101,6 +110,19 @@ Page({
         //   }
         // })
       }
+    })
+  },
+  setUserInfo: function() {
+    var this_ = this;
+    var userInfo = wx.getStorageSync('userInfo');
+    console.log(userInfo.avatarUrl);
+    this_.setData({
+      avatarUrl: userInfo.avatarUrl,
+      nickName: userInfo.nickName,
+      country: userInfo.country,
+      province: userInfo.province,
+      city: userInfo.city,
+      gender: userInfo.gender=1 ? '男':'女'
     })
   }
 })
