@@ -14,15 +14,18 @@
       </view>
     </view>
   </view>
-  <view class="avatar">
-    <image src="{{avatarUrl}}" class="avatar-img" mode="widthFix"></image>
-  </view>
-  <view class="text-info">
-    <view class="position">
-      <view>{{gender}}</view>
-      <view>{{country}}|{{province}}|{{city}}</view>
+  <view class="user-con">
+    <view class="avatar">
+      <image src="{{avatarUrl}}" class="avatar-img" mode="widthFix"></image>
+    </view>
+    <view class="text-info">
+      <view class="position">
+        <view>{{gender}}</view>
+        <view>{{country}}|{{province}}|{{city}}</view>
+      </view>
     </view>
   </view>
+  <view style="height: 10px; width:100%; border-bottom:1px skyblue solid"></view>
   <!-- 发布文章 -->
   <view class="deploy" bindtap="goToDeploy">
     <image src="./img/deploy.png" mode="widthFix" class="deploy-img"></image>
@@ -33,7 +36,6 @@
     <!-- 未登录提示 -->
     <image src="https://markhorizon.oss-cn-beijing.aliyuncs.com/logo/logo.png" mode="widthFix" class="logo_img"></image>
     <view style="font-size: 20px; text-align: center; height:100px">需要登陆</view>
-    
   </view>
   <view class="login">
     <view>

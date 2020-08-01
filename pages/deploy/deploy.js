@@ -155,9 +155,23 @@ Page({
   },
   getContext: function(){
     var _this = this;
+    var openid = wx.getStorageSync('userInfo').openId;
+    console.log(openid);
     _this.editorCtx.getContents({
       success:function(res){
         console.log(res);
+        //上传服务器
+        wx.request({
+          url: 'http://localhost:8080/api/article/uploadArticle',
+          method: 'POST',
+          data:{
+            openid: openid,
+            article: res.html
+          },
+          success: function(){
+            
+          }
+        })
       }
     })
   }

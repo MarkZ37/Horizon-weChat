@@ -55,12 +55,15 @@
   height: 8px;
   width: 100%;
 }
+.user-con{
+  background-color: rgb(104, 196, 233);
+  height: 132px;
+}
 /* 头像 */
-.avatar{
+.user-con .avatar{
   width: 80px;
   height: 80px;
   margin: 0px auto;
-  margin-top: 10px;
 }
 .avatar .avatar-img{
   width: 100%;
@@ -79,7 +82,9 @@
 }
 
 /* 用户信息 */
+
 .position{
   margin: 0px auto;
   text-align: center;
+  color: #FFFFFF;
 }
