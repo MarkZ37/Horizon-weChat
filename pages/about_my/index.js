@@ -1,7 +1,12 @@
 // pages/about_my/index.js
 let userStatus = require('../status/status.js')
+
 Page({
 
+  //页面初始化
+  onLoad: function() {
+
+  },
   /**
    * 页面的初始数据
    */
@@ -53,9 +58,11 @@ Page({
                 if(userInfo.data.status == 777) {
                   wx.setStorageSync('userInfo', userInfo.data.data);
                   this_.setUserInfo();
+                  this_.setArticle();
                   this_.setData({
                     isLogin: true
                   })
+                  this_.setArticle;
                 }
               }
             })
@@ -67,7 +74,6 @@ Page({
   setUserInfo: function() {
     var this_ = this;
     var userInfo = wx.getStorageSync('userInfo');
-    console.log(userInfo.avatarUrl);
     this_.setData({
       avatarUrl: userInfo.avatarUrl,
       nickName: userInfo.nickName,
@@ -75,6 +81,19 @@ Page({
       province: userInfo.province,
       city: userInfo.city,
       gender: userInfo.gender=1 ? '男':'女'
+    })
+  },
+  setArticle: function(){
+    var openid = wx.getStorageSync('userInfo').openId;
+    wx.request({
+      url: 'http://localhost:8080/api/article/getArticle',
+      data: {
+        openid: openid,
+      },
+      method: 'POST',
+      success: function(e) {
+        console.log(e);
+      }
     })
   }
 })

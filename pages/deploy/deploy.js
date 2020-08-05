@@ -168,8 +168,13 @@ Page({
             openid: openid,
             article: res.html
           },
-          success: function(){
-            
+          success: function(e){
+            console.log(e);
+            if(e.data.status == 135){
+              wx.navigateBack({
+                delta: 1,
+              })
+            }
           }
         })
       }

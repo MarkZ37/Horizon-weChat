@@ -8,7 +8,8 @@
     "pages/about_my/setup/setup",
     "pages/about_my/more/more",
     "pages/login/login",
-    "pages/deploy/deploy"
+    "pages/deploy/deploy",
+    "components/article/article"
   ],
   "window": {
     "backgroundTextStyle": "light",
