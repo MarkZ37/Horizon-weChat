@@ -1,6 +1,6 @@
 // pages/about_my/index.js
 let userStatus = require('../status/status.js')
-
+var app = getApp();
 Page({
 
   //页面初始化
@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: false
+    isLogin: app.globalData.isLogin
   },
 
   // 事件函数
@@ -59,10 +59,10 @@ Page({
                   wx.setStorageSync('userInfo', userInfo.data.data);
                   this_.setUserInfo();
                   this_.setArticle();
+                  app.globalData.isLogin = true;
                   this_.setData({
-                    isLogin: true
+                    isLogin: app.globalData.isLogin
                   })
-                  this_.setArticle;
                 }
               }
             })
@@ -84,7 +84,9 @@ Page({
     })
   },
   setArticle: function(){
+    //设置前端文章显示
     var openid = wx.getStorageSync('userInfo').openId;
+    var this_ = this;
     wx.request({
       url: 'http://localhost:8080/api/article/getArticle',
       data: {
@@ -93,7 +95,15 @@ Page({
       method: 'POST',
       success: function(e) {
         console.log(e);
+        // wx.setStorageSync('articles', e.data.data);
+        this_.setData({
+          articles: e.data.data,
+        })
       }
     })
+  },
+  onShow: function(){
+    var this_ = this;
+    this_.setArticle();
   }
 })

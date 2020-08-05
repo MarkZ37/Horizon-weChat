@@ -1,4 +1,6 @@
 /* pages/about_my/index.wxss */
+@import "../../components/article/article.wxss";
+
 .head_bar{
   width: 100%;
   height: 40px;

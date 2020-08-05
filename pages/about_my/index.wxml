@@ -1,4 +1,5 @@
 <!--pages/about_my/index.wxml-->
+<import src="../../components/article/article.wxml" />
 <view wx:if="{{isLogin}}">
 <!-- 已经登陆界面 -->
   <view class='head'>
@@ -30,6 +31,10 @@
   <view class="deploy" bindtap="goToDeploy">
     <image src="./img/deploy.png" mode="widthFix" class="deploy-img"></image>
   </view>
+  <view wx:for="{{articles}}" wx:for-item="article">
+    <template is="Article" data='{{...article}}'></template>
+  </view>
+  <view style="height: 60px"></view>
 </view>
 <view wx:else>
   <view class="no_login">

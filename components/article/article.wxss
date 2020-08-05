@@ -1,1 +1,11 @@
 /* components/article/article.wxss */
+.article{
+  background-color: rgb(138, 202, 255);
+}
+.blank{
+  width: 100%;
+  height: 5px;
+}
+.time{
+  color: gray;
+}
