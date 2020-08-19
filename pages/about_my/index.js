@@ -45,7 +45,7 @@ Page({
           success: function(result) {
             // console.log(result);
             wx.request({
-              url: 'http://localhost:8080/api/user/login',
+              url: "http://localhost:8080/api/user/login",
               method: 'POST',
               data: {
                 encryptedData: result.encryptedData,
@@ -96,6 +96,13 @@ Page({
       success: function(e) {
         console.log(e);
         // wx.setStorageSync('articles', e.data.data);
+        // console.log(this_.format(e.data.data[0].time,'yyyy-MM-dd HH:mm'));
+        for(var i = 0 ; i < e.data.data.length ; i++){
+          var timeString = this_.format(e.data.data[i].time,'yyyy-MM-dd HH:mm');
+          // console.log("timeString:"+timeString);
+          e.data.data[i].time = timeString;
+          // console.log("new time:"+e.data.data[i].time);
+        }
         this_.setData({
           articles: e.data.data,
         })
@@ -104,6 +111,37 @@ Page({
   },
   onShow: function(){
     var this_ = this;
-    this_.setArticle();
+    if(this_.isLogin == 1){
+      this_.setArticle();
+    }
+  },
+   //封装时间格式
+   format: function(time, format) {
+    var t = new Date(time);
+    var tf = function (i) {
+      return (i < 10 ? '0' : '') + i
+    };
+    return format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+      switch (a) {
+        case 'yyyy':
+          return tf(t.getFullYear());
+          break;
+        case 'MM':
+          return tf(t.getMonth() + 1);
+          break;
+        case 'mm':
+          return tf(t.getMinutes());
+          break;
+        case 'dd':
+          return tf(t.getDate());
+          break;
+        case 'HH':
+          return tf(t.getHours());
+          break;
+        case 'ss':
+          return tf(t.getSeconds());
+          break;
+      }
+    })
   }
 })
