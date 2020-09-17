@@ -2,8 +2,13 @@
 <template name="Article">
   <view class="blank"></view>
   <view class="article">
+    <view class="userinfo-box">
+      <image src="{{avatarurl}}" class="avatar"></image>
+      <text class="nickname">{{nickname}}</text>
+    </view>
     <view class="time">{{time}}</view>
-    <rich-text nodes="{{article}}"></rich-text>
+    <rich-text nodes="{{article}}" class="context"></rich-text>
   </view>
+  <view class="line"></view>
   <view class="blank"></view>
 </template>

@@ -1,11 +1,25 @@
 /* components/article/article.wxss */
-.article{
-  background-color: rgb(138, 202, 255);
-}
+
 .blank{
   width: 100%;
   height: 5px;
 }
 .time{
   color: gray;
+}
+.userinfo-box{
+  height: 50px;
+}
+.avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+}
+.nickname{
+  /* line-height: 50px; */
+}
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: rgb(104, 196, 233);
 }

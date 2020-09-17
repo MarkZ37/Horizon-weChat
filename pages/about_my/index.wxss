@@ -60,6 +60,7 @@
 .user-con{
   background-color: rgb(104, 196, 233);
   height: 132px;
+  padding-top: 20px;
 }
 /* 头像 */
 .user-con .avatar{

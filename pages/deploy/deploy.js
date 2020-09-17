@@ -126,7 +126,7 @@ Page({
     var that = this;
     var _this = this;
     wx.uploadFile({
-      url: 'http://localhost:8080/tool/oss/homeImageUpload',//此处的服务器地址请替换成自己的
+      url: 'http://39.106.174.218:8080/tool/oss/homeImageUpload',//此处的服务器地址请替换成自己的
       filePath: imgurl,
       name: 'file',
       header: {
@@ -156,17 +156,21 @@ Page({
   getContext: function(){
     var _this = this;
     var openid = wx.getStorageSync('userInfo').openId;
+    var nickName = wx.getStorageSync('userInfo').nickName;
+    var avatarUrl = wx.getStorageSync('userInfo').avatarUrl;
     console.log(openid);
     _this.editorCtx.getContents({
       success:function(res){
         console.log(res);
         //上传服务器
         wx.request({
-          url: 'http://localhost:8080/api/article/uploadArticle',
+          url: 'http://39.106.174.218:8080/api/article/uploadArticle',
           method: 'POST',
           data:{
             openid: openid,
-            article: res.html
+            article: res.html,
+            nickname: nickName,
+            avatarurl: avatarUrl
           },
           success: function(e){
             console.log(e);

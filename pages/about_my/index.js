@@ -45,7 +45,7 @@ Page({
           success: function(result) {
             // console.log(result);
             wx.request({
-              url: "http://localhost:8080/api/user/login",
+              url: "http://39.106.174.218:8080/api/user/login",
               method: 'POST',
               data: {
                 encryptedData: result.encryptedData,
@@ -88,20 +88,16 @@ Page({
     var openid = wx.getStorageSync('userInfo').openId;
     var this_ = this;
     wx.request({
-      url: 'http://localhost:8080/api/article/getArticle',
+      url: 'http://39.106.174.218:8080/api/article/getArticle',
       data: {
         openid: openid,
       },
       method: 'POST',
       success: function(e) {
         console.log(e);
-        // wx.setStorageSync('articles', e.data.data);
-        // console.log(this_.format(e.data.data[0].time,'yyyy-MM-dd HH:mm'));
         for(var i = 0 ; i < e.data.data.length ; i++){
           var timeString = this_.format(e.data.data[i].time,'yyyy-MM-dd HH:mm');
-          // console.log("timeString:"+timeString);
           e.data.data[i].time = timeString;
-          // console.log("new time:"+e.data.data[i].time);
         }
         this_.setData({
           articles: e.data.data,
@@ -111,7 +107,7 @@ Page({
   },
   onShow: function(){
     var this_ = this;
-    if(this_.isLogin == 1){
+    if(app.globalData.isLogin == 1){
       this_.setArticle();
     }
   },

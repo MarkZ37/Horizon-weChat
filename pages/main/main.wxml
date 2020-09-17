@@ -1,2 +1,7 @@
 <!--pages/main/main.wxml-->
 <!-- 主页 -->
+<import src="../../components/article/article.wxml" />
+<view wx:for="{{articles}}" wx:for-item="article">
+    <template is="Article" data='{{...article}}'></template>
+</view>
+<view style="height: 60px"></view>
